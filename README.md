@@ -1,4 +1,5 @@
 # AuPL-Aufgabenguide
+[![Build](https://github.com/Rdeisenroth/APL-Aufgabenguide/actions/workflows/build.yml/badge.svg)](https://github.com/Rdeisenroth/APL-Aufgabenguide/actions/workflows/build.yml)
 ## Was ist das?
 Das ist **keine** Zusammenfassung, sondern lediglich ein Aufgabenguide für Klausuraufgaben der AuPL. Es ist garantiert unvollständig.
 ## Kompilieren
