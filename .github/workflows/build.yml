@@ -52,7 +52,7 @@ jobs:
         run: |
           for f in *.tex; do
             cp "$f" "${f%.tex}-dark.tex"
-            sed -i 's/^% dark_mode, % uncomment for dark mode/dark_mode, % uncomment for dark mode/' "${f%.tex}-dark.tex"
+            sed -i 's/^    % dark_mode, % uncomment for dark mode/    dark_mode, % uncomment for dark mode/' "${f%.tex}-dark.tex"
           done
 
       # 6. Build the document
