@@ -1,7 +1,10 @@
+\IfFileExists{ci.tex}{
+    \input{ci.tex}
+}{}
 \documentclass[
     ngerman,
     color=3b,
-    % dark_mode,
+    % dark_mode, % uncomment for dark mode
     % load_common, % läd oft benutzte Pakete, erhöht aber die Compile-Time drastisch
     summary,
     %twosided,
@@ -516,7 +519,7 @@
         {\setlength{\mathindent}{0cm}\begin{align*}
             \{\{\lnot Rxy, \lnot Ryz, Rxz\},
             \{\lnot Rxy, \lnot Rxx, \lnot Ryy\},
-            \{Rxy, Rxx, Ryy\},
+            \{\lnot Rxy, Rxx, Ryy\},
             \{Rxfx\},
             \{\lnot Rfxfx, \lnot Rfxx\},
             \{Rfxfx, Rfxx\}\}
