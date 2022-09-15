@@ -47,11 +47,19 @@ jobs:
           cd Rubos-TUDA-Template
           l3build install
 
-      # 5. Build the document
+      # 5. prepare darkmode
+      - name: "Prepare darkmode"
+        run: |
+          for f in *.tex; do
+            cp "$f" "${f%.tex}-dark.tex"
+            sed -i 's/^% dark_mode, % uncomment for dark mode/dark_mode, % uncomment for dark mode/' "${f%.tex}-dark.tex"
+          done
+
+      # 6. Build the document
       - name: "Build the document"
         run: latexmk --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -lualatex *.tex
 
-      # 6. Upload artifacts to GitHub
+      # 7. Upload artifacts to GitHub
       - name: Upload artifacts to GitHub
         if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v3
