@@ -231,6 +231,7 @@
     Selbes Wie normale Resolution, aber mit Hornklauseln, und man darf nur mit einelementigen Klauseln ableiten.
     \clearpage
     \subsection{Hornklausel-Erfüllbarkeitstest/Minimale erfüllende Interpretation}
+    \exstats{2}{3min}
     \begin{definition}[Literal]
         Buchstabe mit oder ohne Negation, z.B.: $a$ oder $\lnot a$ (aber nicht sowas: $a\rightarrow{}b$)
     \end{definition}
@@ -529,8 +530,25 @@
         \begin{figure}[ht!]
             \centering
             \begin{forest}
-                for tree={grow'=north, calign=first, edge={Latex-,thick}}
-                [$\Box$[$\{\underline{Rfcfc}\}$[$\{\underline{\lnot Rfcc}\}$[{$\{\underline{\lnot Rcfc}, \lnot Rfcc\}$}[$\{\underline{\lnot Rcc}\}$][{$\{\lnot Rcfc, \lnot Rfcc, \underline{Rcc}\}$}]][$\{\underline{Rcfc}\}$]][{$\{Rfcfc, \underline{Rfcc}\}$}]][$\{\underline{\lnot Rfcfc}\}$]]
+                for tree={
+                grow'=north,
+                calign=first,
+                edge={Latex-,thick},
+                content format={\ensuremath{\left\{\forestoption{content}\right\}}},
+                }
+                [\Box, content format={\ensuremath{\forestoption{content}}}
+                [\underline{Rfcfc}
+                    [\underline{\lnot Rfcc}
+                        [{\underline{\lnot Rcfc}, \lnot Rfcc}
+                            [\underline{\lnot Rcc}]
+                            [{\lnot Rcfc, \lnot Rfcc, \underline{Rcc}}]
+                        ]
+                        [\underline{Rcfc}]
+                    ]
+                    [{Rfcfc, \underline{Rfcc}}]
+                ]
+                [\underline{\lnot Rfcfc}]
+                ]
             \end{forest}
         \end{figure}
     \end{steps}
