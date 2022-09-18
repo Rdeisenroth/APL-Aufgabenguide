@@ -76,13 +76,12 @@ jobs:
       #9 create a release
       - name: Create a release
         if: ${{ github.ref == 'refs/heads/master' && !env.ACT && github.repository == 'Rdeisenroth/APL-Aufgabenguide' }}
-        uses: actions/create-release@v1
-        env:
+        uses: softprops/action-gh-release@v1
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: snapshot-${{ steps.date.outputs.date }}
-          release_name: snapshot-release-${{ steps.date.outputs.date }}
-          file: "*.pdf"
+          name: snapshot-release-${{ steps.date.outputs.date }}
+          files: "*.pdf"
           fail_on_unmatched_files: true
           draft: false
           prerelease: false
