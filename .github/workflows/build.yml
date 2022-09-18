@@ -82,7 +82,7 @@ jobs:
         with:
           tag_name: snapshot-${{ steps.date.outputs.date }}
           release_name: snapshot-release-${{ steps.date.outputs.date }}
-          files: "*.pdf"
+          file: "*.pdf"
           fail_on_unmatched_files: true
           draft: false
           prerelease: false
