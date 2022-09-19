@@ -176,14 +176,14 @@
     \textcolor{red}{\textbf{KNF:}} $(p\lor q\lor\lnot r)\land(p\lor \lnot q\lor r)\land(p\lor \lnot q\lor \lnot r)\land(\lnot p\lor q\lor \lnot r)\land(\lnot p\lor \lnot q\lor \lnot r)$\tikzmark{knf}
     \begin{tikzpicture}[remember picture, overlay, thick,-Latex]
         \begin{scope}[green!80!black]
-            \node[circle,draw] (dnfcenter) at ($(pic cs:truethtabk1)+(2cm,-.5cm)$) {$\land$};
+            \node[circle,draw] (dnfcenter) at ($(pic cs:truethtabk1)+(2cm,-.5cm)$) {$\lor$};
             \foreach \i in {1,5, 7}{
                 \draw (pic cs:truethtabk\i) -- (dnfcenter);
             }
             \draw (dnfcenter) |- ([yshift=.5ex]pic cs:dnf);
         \end{scope}
         \begin{scope}[red]
-            \node[circle,draw] (knfcenter) at ($(pic cs:truethtabk4)+(3cm,0cm)$) {$\lor$};
+            \node[circle,draw] (knfcenter) at ($(pic cs:truethtabk4)+(3cm,0cm)$) {$\land$};
             \foreach \i in {2,3,4,6,8}{
                 \draw (pic cs:truethtabk\i) -- (knfcenter);
             }
