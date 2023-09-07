@@ -1,26 +1,27 @@
-# This is a basic workflow to help you get started with Actions
+# LaTeX document build workflow
 
-name: Build
+name: build
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push events for all branches
   push:
-  pull_request:
     branches:
       - main
+      - master
+  pull_request:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build_latex"
-  l3build:
+  build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    # The docker image to use for the container
     container:
-      image: registry.gitlab.com/islandoftex/images/texlive:latest
+      image: ghcr.io/rdeisenroth/rubos-tuda-template:latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -28,38 +29,19 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v3
 
-      # 2. Install additional dependencies
-      - run: apt-get update && apt-get install -y librsvg2-bin rsync
-
-      # 3. Setup TU-Logo by converting it to pdf and copying it to the template directory
-      - name: "Setup TU-Logo"
+      # Link texmf folder to the current texmf home
+      - name: Link texmf folder to the current texmf home
         run: |
-          mkdir -p "$(kpsewhich -var-value=TEXMFHOME)/tex/latex/local"
-          curl -o tuda_logo.svg -L https://upload.wikimedia.org/wikipedia/de/2/24/TU_Darmstadt_Logo.svg\?download
-          rsvg-convert -f pdf -o tuda_logo.pdf tuda_logo.svg
-          mv tuda_logo.pdf "$(kpsewhich -var-value=TEXMFHOME)/tex/latex/local"
+          ln -s /root/texmf $(kpsewhich -var-value=TEXMFHOME)
           texhash --verbose
-      
-      # 4. Install rubos-tuda-template
-      - name: "Install rubos-tuda-template"
-        run: |
-          git clone https://github.com/Rdeisenroth/Rubos-TUDA-Template.git
-          cd Rubos-TUDA-Template
-          l3build install
 
-      # 5. prepare darkmode
-      - name: "Prepare darkmode"
-        run: |
-          for f in *.tex; do
-            cp "$f" "${f%.tex}-dark.tex"
-            sed -i 's/^    % dark_mode, % uncomment for dark mode/    dark_mode, % uncomment for dark mode/' "${f%.tex}-dark.tex"
-          done
-
-      # 6. Build the document
+      # 2. Build the document
       - name: "Build the document"
-        run: latexmk --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -lualatex *.tex
+        run: |
+          CI_RUN=1 make -j $(nproc)
+          mv build/*.pdf .
 
-      # 7. Upload artifacts to GitHub
+      # 3. Upload artifacts to GitHub
       - name: Upload artifacts to GitHub
         if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v3
@@ -68,12 +50,12 @@ jobs:
           path: "*.pdf"
           if-no-files-found: error
       
-      # 8. Get Date
+      # 4. Get Date
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S.%N')"
 
-      #9 create a release
+      #5 create a release
       - name: Create a release
         if: ${{ github.ref == 'refs/heads/master' && !env.ACT && github.repository == 'Rdeisenroth/APL-Aufgabenguide' }}
         uses: softprops/action-gh-release@v1
