@@ -115,9 +115,9 @@
     %--Titelseite--
     \label{toc}\maketitle{}
     \section{Vorwort}
-    Du befindest dich gerade mitten in der AuPL Prüfung, hast keinen Plan von den Aufgaben und blätterst verzweifelt durch dein ganzes Ausgedrucktes Zeug, und eventuell bist du bei diesem Zettel gelandet, den irgend so ein rando auf dem Geekhub hochgeladen hat? Dann musst du jetzt nicht mehr weitersuchen, denn dieses Aufgabenguide ist genau das, was du brauchst. Hier findest du zu jedem Aufgabentyp die notwendigen Definitionen, ein idiotensicheres -- auf Zeit optimiertes -- Lösungsguide mit Beispielen, und eine Einschätzung für Schwierigkeitsgrad und Zeitbedarf. Aber was tust du denn da bitte?! Du hast doch gar keine Zeit mehr, also fang endlich an zu Blättern, und schau am Besten im \hyperref[toc]{Inhaltsverzeichnis} auf Seite \pageref{toc} vorbei.
+    Du befindest dich gerade mitten in der AuPL Prüfung, hast keinen Plan von den Aufgaben und blätterst verzweifelt durch dein ganzes ausgedrucktes Zeug, und eventuell bist du bei diesem Zettel gelandet, den irgend so ein Rando auf dem Geekhub hochgeladen hat? Dann musst du jetzt nicht mehr weitersuchen, denn dieses Aufgabenguide ist genau das, was du brauchst. Hier findest du zu jedem Aufgabentyp die notwendigen Definitionen, ein idiotensicheres -- auf Zeit optimiertes -- Lösungsguide mit Beispielen, und eine Einschätzung für Schwierigkeitsgrad und Zeitbedarf. Aber was tust du denn da bitte?! Du hast doch gar keine Zeit mehr, also fang endlich an zu blättern, und schau am Besten im \hyperref[toc]{Inhaltsverzeichnis} auf Seite \pageref{toc} vorbei.
 
-    Du bist ja immernoch hier? Nagut, dann wünsche ich dir viel Erfolg bei der Prüfung, und hoffe, dass du mit diesem Aufgabenguide deine Prüfung bestehst!
+    Du bist ja immernoch hier? Na gut, dann wünsche ich dir viel Erfolg bei der Prüfung, und hoffe, dass du mit diesem Aufgabenguide deine Prüfung bestehst!
     \tableofcontents %Inhaltsverzeichnis
 
     %---Beginn Der Zusammenfassung---%
@@ -144,11 +144,12 @@
         Verundung von Veroderungen: $\{\{x\lor y\lor\dots\}\land\{a\lor b\lor\dots\}\land\dots\}$
     \end{definition}
     \begin{tipp}
-        Nach De-Morgan: Strich über die Einzelnen Buhstaben, $\land$ und $\lor$ vertauschen is äquivalent zum Ursprung:\\ $a\land b = \overline{a}\lor \overline{b}$
+        Nach De-Morgan: Strich über die Einzelnen Buhstaben, sowie $\land$ und $\lor$ vertauschen, ist äquivalent zum Ursprung:\\ 
+        $a\land b = \overline{a}\lor \overline{b}$
     \end{tipp}
     \subsubsection{aus Wahrheitstabelle}
-    \paragraph{Vorgehen} Zuerst musst du die Klausel+Spalte erstellen.
-    Dazu einfach bei wahren Zeilen die Variablen verunden, und bei falschen Zeilen den Wahrheitswert der Variablen \fatsf{negieren} und dann die Variablen verodern. Für DNF dann einfach die Terme der Wahren Spalten verodern, für KNF die Terme der Falschen Spalten verunden.
+    \paragraph{Vorgehen} Zuerst musst du die Klausel-Spalte erstellen.
+    Dazu einfach bei den wahren Zeilen die Variablen verunden, und bei den falschen Zeilen den Wahrheitswert der Variablen \fatsf{negieren} und dann die Variablen verodern. Für DNF dann einfach die Terme der wahren Spalten verodern, für KNF die Terme der falschen Spalten verunden.
 
     \begin{table}[ht!]
         \rowcolors{2}{\thepagecolor}{fgcolor!10!\thepagecolor}
@@ -197,7 +198,8 @@
         Buchstabe mit oder ohne Negation, z.B.: $a$ oder $\lnot a$ (aber nicht sowas: $a\rightarrow{}b$)
     \end{definition}
     \begin{definition}[Klausel]
-        Menge mit einzelnen Literalen, KNF Glied -- Komma = $\lor$ z.B.: $\{\lnot a, b,\lnot c, d\}$  (aber nicht $\{a\rightarrow{}b,\lnot d\}$)
+        Menge mit einzelnen Literalen, auch genannt KNF Glied. Das Komma steht hier für $\lor$ z.B.: 
+        $\{\lnot a, b,\lnot c, d\}$ bedeutet dann $\lnot a\lor b\lor\lnot c\lor d$ (aber $\{a\rightarrow{}b,\lnot d\}$ ist keine Klausel)
     \end{definition}
     \begin{definition}[Klauselmenge]
         Menge von Klauseln, in KNF -- aber innerhalb der Glieder wird $\lor$ durch ein Komma und außerhalb der Glieder wird $\land$ ebenfalls durch ein Komma ersetzt.
@@ -206,9 +208,9 @@
     \begin{steps}
         \item Unerfüllbarkeitsaussage (falls noch nicht getan): wenn da steht du sollst die Allgemeingültigkeit der Formel zeigen, musst du diese zunächst durch negieren (\enquote{in eine Unerfüllbarkeitsaussagen umwandeln}).
         \item Formel in \hyperref[knf]{KNF} umwandeln, falls noch nicht in KNF. (Definition KNF auf \pagename~\pageref{knf})
-        \item Klauselmenge aufschreiben: einfach KNF so wie in der Definition auf \pageref{knf}, nur ersetzen wir die \enquote{$\lor$} und \enquote{$\land$} durch Kommas \enquote{$,$}.
+        \item Klauselmenge aufschreiben: einfach KNF so wie in der Definition auf \pagename~\pageref{knf}, nur ersetzen wir die \enquote{$\lor$} und \enquote{$\land$} durch Kommas \enquote{$,$}.
         \item Wir spielen Minecraft, und craften jetzt die einzelnen Klauseln so zusammen, dass wir die leere Klausel erhalten. Was sich logisch widerspricht, löst sich auf. Dabei fängst du am Besten mit der größten Klausel an, und schaust, dass du eine findest, die möglichst viele Teile davon auflösen kann, bis du irgendwann die leere Menge hat, die man mit $\Box$ beschreibt.
-        \item Falls die Leere Menge nicht herleitbar ist, ist die Klauselmenge erfüllbar.
+        \item Falls die leere Menge nicht herleitbar ist, ist die Klauselmenge erfüllbar.
     \end{steps}
     \paragraph{Beispiel}
     Beweisen von Folgerungsbeziehung $\left\{p,p\rightarrow q, \left(p\rightarrow q\right)\rightarrow\left(q \rightarrow r\right)\right\}\models r$, also zeigen der Unerfüllbarkeit von $\lnot(\left\{p,p\rightarrow q, \left(p\rightarrow q\right)\rightarrow\left(q \rightarrow r\right)\right\}\models r)$.
@@ -233,28 +235,29 @@
         Buchstabe mit oder ohne Negation, z.B.: $a$ oder $\lnot a$ (aber nicht sowas: $a\rightarrow{}b$)
     \end{definition}
     \begin{definition}[Klausel]
-        Menge mit einzelnen Literalen, KNF Glied -- Komma = $\lor$ z.B.: $\{\lnot a, b,\lnot c, d\}$  (aber nicht $\{a\rightarrow{}b,\lnot d\}$)
+        Menge mit einzelnen Literalen, auch genannt KNF Glied. Das Komma steht hier für $\lor$ z.B.: 
+        $\{\lnot a, b,\lnot c, d\}$ bedeutet dann $\lnot a\lor b\lor\lnot c\lor d$ (aber $\{a\rightarrow{}b,\lnot d\}$ ist keine Klausel)
     \end{definition}
     \begin{definition}[Hornklausel]
         Eine Klausel $\mathcal{C}$ mit \textbf{höchstens} einem positiven Literal.
         \begin{itemize}
-            \item Positive Hornklausel: $\mathcal{C}$ besteht nur aus einem positiven Literal
+            \item positive Hornklausel: $\mathcal{C}$ besteht nur aus einem positiven Literal
             \item negative Hornklausel: $\mathcal{C}$ enthält kein positives Literal
         \end{itemize}
     \end{definition}
     \begin{definition}[Klauselmenge]
         Menge von Klauseln, in KNF -- aber innerhalb der Glieder wird $\lor$ durch ein Komma und außerhalb der Glieder wird $\land$ ebenfalls durch ein Komma ersetzt.
         \begin{itemize}
-            \item Hornklauselmenge: Klauselmenge wo alle Klauseln Hornklauseln sind
+            \item Hornklauselmenge: Klauselmenge bei der alle Klauseln Hornklauseln sind
         \end{itemize}
     \end{definition}
     \paragraph{Vorgehen}
     \begin{steps}
-        \item Wir fangen erst mal mit der Leeren Menge an: $\mathcal{X}_0=\emptyset$
-        \item Jetzt suchen wir alle Positiven Hornklauseln und fügen sie zu unserer Menge X hinzu: $\mathcal{X}{n+1}=\{\dots\}$
-        \item Falls keine Positiven Hornklauseln mehr existieren, springe zu Schritt 5
-        \item Falls doch \enquote{Streichen} wir aus allen anderen Klauseln die negation der zu $\mathcal{X}$ neu hinzugekommenen Variablen einfach raus, falls diese vorkommen und Springen zu Schritt 2 mit der neuen Klauselmenge
-        \item Jetzt haben wir $\mathcal{X}_\infty$ berechnet, das ist die minimale Belegung. Wenn wir jetzt jede Klausel (unveränderten) Klauselmenge durchgehen, und schauen ob diese erfüllt ist, wenn wir alle Literale von $x$ auf 1 und alle anderen auf $0$ setzen. Falls ja ist die Formel erfüllbar, falls nein ist sie unerfüllbar.
+        \item Wir fangen erst mal mit der leeren Menge an: $\mathcal{X}_0=\emptyset$
+        \item Jetzt suchen wir alle positiven Hornklauseln und fügen sie zu unserer Menge X hinzu: $\mathcal{X}{n+1}=\{\dots\}$
+        \item Falls keine positiven Hornklauseln mehr existieren, springe zu Schritt 5
+        \item Falls doch \enquote{Streichen} wir aus allen anderen Klauseln die Negation der zu $\mathcal{X}$ neu hinzugekommenen Variablen einfach raus, falls diese vorkommen und springen zu Schritt 2 mit der neuen Klauselmenge
+        \item Jetzt haben wir $\mathcal{X}_\infty$ berechnet, das ist die minimale Belegung. Wenn wir jetzt jede Klausel der (unveränderten) Klauselmenge durchgehen, und schauen ob diese erfüllt ist, wenn wir alle Literale von $x$ auf 1 und alle anderen Literale auf $0$ setzen. Falls ja ist die Formel erfüllbar, falls nein ist sie unerfüllbar.
     \end{steps}
     \paragraph{Beispiel}\mbox{}
 
@@ -326,7 +329,7 @@
         Lies es so: alles was links von $\vdash$ steht wird verundet, und alles was rechts von $\vdash$ steht wird verodert. Stell dir $\vdash$ wie eine Implikation vor, das heißt entweder die linke Seite ist falsch, oder die rechte Seite ist wahr.
     \end{definition}
     \begin{definition}[Regel (Ax)]
-        Die Eierlegende Wollmilchsau, die uns quasi alle Regeln erstellen lässt, solange auf der rechten Seite irgendwann mal das Gleiche vorkommt, wie auf der Linken Seite.
+        Die eierlegende Wollmilchsau, die uns quasi alle Regeln erstellen lässt, solange auf der rechten Seite irgendwann mal das Gleiche vorkommt, wie auf der linken Seite.
     \end{definition}
     \begin{figure}[ht!]
         \centering%
@@ -380,7 +383,7 @@
         \end{prooftree}
     \end{center}
     \subsubsection{\texorpdfstring{$\mathcal{SK}^+$}{SK+} - \texorpdfstring{$\mathcal{SK}$}{SK} with extra steps}
-    Selbes Vorgehen wie bei $\mathcal{SK}$, aber mit den zusätzlichen folgenden Regeln von $\mathcal{SK}^+$
+    Selbes Vorgehen wie bei $\mathcal{SK}$, aber mit den zusätzlichen Regeln von $\mathcal{SK}^+$
     \clearpage
     \section{FO}
     \subsection{FO-Formeln aufstellen}
@@ -422,7 +425,7 @@
         Lies es so: alles was links von $\vdash$ steht wird verundet, und alles was rechts von $\vdash$ steht wird verodert. Stell dir $\vdash$ wie eine Implikation vor, das heißt entweder die linke Seite ist falsch, oder die rechte Seite ist wahr.
     \end{definition}
     \begin{definition}[Regel (Ax)]
-        Die Eierlegende Wollmilchsau, die uns quasi alle Regeln erstellen lässt, solange auf der rechten Seite irgendwann mal das Gleiche vorkommt, wie auf der Linken Seite.
+        Die eierlegende Wollmilchsau, die uns quasi alle Regeln erstellen lässt, solange auf der rechten Seite irgendwann mal das Gleiche vorkommt, wie auf der linken Seite.
     \end{definition}
     \begin{figure}[ht!]
         \centering
@@ -489,7 +492,7 @@
             \item  $\exists x\exists y~\left(x\rightarrow y\right)$ wird zu $c\rightarrow d$
         \end{itemize} Falls $fx$ schon vorkommt, nimmst du nen anderen Buchstaben, z.B. $g,h,\dots$.
         \item Klauselmenge aufstellen: Du lässt erst mal einfach alle $\forall$ weg und ersetzt ihre Variablen durch Terme ($t_0,t_1,\dots$), und dann einfach KNF so wie in der Definition auf \pagename~\pageref{knf}, nur ersetzt du die \enquote{$\lor$} und \enquote{$\land$} durch Kommas \enquote{$,$}.
-        \item Jetzt spielst du quasi Minecraft, aber eher $4d$-Minecraft. Du hast ja die ganzen $\forall$-Quantoren \enquote{weggelassen} aber dafür darfst du jetzt für die Terme \textbf{jeden} Wert einsetzen. Konstanten darfst du aber nicht verändern. Jetzt musst du die Formeln quasi zusammencraften. Was sich logisch widerspricht, löst sich auf. Also musst du die Terme so wählen, dass du möglichst viele gegensätzliche Paare hast, wenn du zwei Formeln zusammenführst. Dabei darfst du die Terme allerdings nach dem einsetzen nicht mehr verändern in den Nachfolgenden Ableitungsschritten. Am Besten erst mal nur zwei Formeln betrachten, und einfach mal ableiten bis du nicht mehr weiterkommst. Dann ggf. Einsetzungen anpassen bis die leere Menge erreicht ist.
+        \item Jetzt spielst du quasi Minecraft, aber eher $4d$-Minecraft. Du hast ja die ganzen $\forall$-Quantoren \enquote{weggelassen} aber dafür darfst du jetzt für die Terme \textbf{jeden} Wert einsetzen. Konstanten darfst du dabei aber nicht verändern. Dannach musst du die Formeln quasi zusammencraften. Was sich logisch widerspricht, löst sich auf. Also musst du die Terme so wählen, dass du möglichst viele gegensätzliche Paare hast, wenn du zwei Formeln zusammenführst. Dabei darfst du die Terme allerdings nach dem Einsetzen nicht mehr verändern, in den nachfolgenden Ableitungsschritten. Am Besten erst mal nur zwei Formeln betrachten, und einfach mal ableiten bis du nicht mehr weiterkommst. Dann ggf. Einsetzungen anpassen, bis die leere Menge erreicht ist.
     \end{steps}
     \begin{hinweis}
         Du kannst eine Klausel auf mehrfach anwenden, solange dabei \textbf{unterschiedliche} Belegungen für mindestens einen der Terme genutzt werden.
@@ -561,7 +564,7 @@
             \item  $\exists x\exists y~\left(x\rightarrow y\right)$ wird zu $c\rightarrow d$
         \end{itemize} Falls $fx$ schon vorkommt, nimmst du nen anderen Buchstaben, z.B. $g,h,\dots$.
         \item Wir Definieren das Herbrandmodell, dieses enthält die Trägermänge $T_0(S)$ und alle Konstanten, Relationen und Funktionen der Signatur $\mathcal{H}:=(T_0(S),c^\mathcal{H},d^\mathcal{H},\dots,f^\mathcal{H},g^\mathcal{H},\dots,R^\mathcal{H},U^\mathcal{H},\dots)$
-        \item Jetzt müssen wir Die einzelnen Bestandteile so definieren, dass das Modell die Formelmenge erfüllt. $T_0(S)$ ist dabei dann einfach jede Kombination von allen Termen und Konstanten, z.B. $f^nc,~n\in \mathbb{N}$
+        \item Jetzt müssen wir die einzelnen Bestandteile so definieren, dass das Modell die Formelmenge erfüllt. $T_0(S)$ ist dabei dann einfach jede Kombination von allen Termen und Konstanten, z.B. $f^nc,~n\in \mathbb{N}$
     \end{steps}
     \vspace{-2cm}\vspace{\fill}
     \paragraph{Beispiel}
@@ -575,7 +578,7 @@
     \end{ceqn}
     Abgelesenene Signatur $S\{E,<, f\}$.
     Da kein Konstantensymbol enthalten ist, fügen wir ein neues Konstantensymbol $c$ hinzu und erhalten die Signatur $S:=\{E,<, f, c\}$.
-    Dabei sind $E$ und $<$ zweistellige Relationssymbole und $f$ ist ein einstelliges Funktionssymbol.  Ein Herbrandmodell von $\Phi$ über der Signatur $S$ ist dann gegeben durch $\mathcal{H}:=\left(T_0(S), E^{\mathcal{H}},<\mathcal{H}, f^{\mathcal{H}}, c^{\mathcal{H}}\right)$ mit
+    Dabei sind $E$ und $<$ zweistellige Relationssymbole und $f$ ist ein einstelliges Funktionssymbol. Ein Herbrandmodell von $\Phi$ über der Signatur $S$ ist dann gegeben durch $\mathcal{H}:=\left(T_0(S), E^{\mathcal{H}},<\mathcal{H}, f^{\mathcal{H}}, c^{\mathcal{H}}\right)$ mit
     \begin{ceqn}
         \begin{align*}
             T_0(S)             & =\left\{f^n c \mid n \in \mathbb{N}\right\}                              \\
