@@ -13,7 +13,8 @@
 
 \usepackage{datetime}
 \usepackage{amsmath}
-
+% \usetikzlibrary{karnaugh}
+\usepackage{extra_pkg/cartonaugh}
 %% Summary settings--%%
 \title[AuPL]{Aussagen und Prädikatenlogik}
 \subtitle{Aufgabenguide}
@@ -110,15 +111,18 @@
     \par\noindent\hfill\fatsf{Schwierigkeit:\stars{#1}}, \fatsf{Benötigte Zeit}: #2\hfill\mbox{}\par\noindent
 }
 
+\colorlet{dnfcolor}{green!80!black}
+\colorlet{knfcolor}{red}
+
 %% Begin of document--%%
 \begin{document}
 
     %--Titelseite--
     \label{toc}\maketitle{}
     \section{Vorwort}
-    Du befindest dich gerade mitten in der AuPL Prüfung, hast keinen Plan von den Aufgaben und blätterst verzweifelt durch dein ganzes ausgedrucktes Zeug, und eventuell bist du bei diesem Zettel gelandet, den irgend so ein Rando auf dem Geekhub hochgeladen hat? Dann musst du jetzt nicht mehr weitersuchen, denn dieses Aufgabenguide ist genau das, was du brauchst. Hier findest du zu jedem Aufgabentyp die notwendigen Definitionen, ein idiotensicheres -- auf Zeit optimiertes -- Lösungsguide mit Beispielen, und eine Einschätzung für Schwierigkeitsgrad und Zeitbedarf. Aber was tust du denn da bitte?! Du hast doch gar keine Zeit mehr, also fang endlich an zu blättern, und schau am Besten im \hyperref[toc]{Inhaltsverzeichnis} auf Seite \pageref{toc} vorbei.
+    Du befindest dich gerade mitten in der AuPL-Prüfung, hast keinen Plan von den Aufgaben und blätterst verzweifelt durch all dein ausgedrucktes Zeug? Eventuell bist du nun bei diesen Zettel gelandet, den irgendein Rando auf dem Geekhub hochgeladen hat? Dann musst du jetzt nicht mehr weitersuchen, denn dieses Aufgabenguide ist genau das, was du brauchst. Hier findest du zu jedem Aufgabentyp die notwendigen Definitionen, ein idiotensicheres -- auf Zeit optimiertes -- Lösungsguide mit Beispielen, und eine Einschätzung des Schwierigkeitsgrads und des Zeitbedarfs. Aber was tust du denn da bitte?! Du hast doch gar keine Zeit mehr. Fang endlich an zu blättern, und schau am Besten im \hyperref[toc]{Inhaltsverzeichnis} auf Seite \pageref{toc} vorbei.
 
-    Du bist ja immernoch hier? Na gut, dann wünsche ich dir viel Erfolg bei der Prüfung, und hoffe, dass du mit diesem Aufgabenguide deine Prüfung bestehst!
+    Du bist ja immer noch hier? Na gut, dann wünsche ich dir viel Erfolg bei der Prüfung, und hoffe, dass du mit diesem Aufgabenguide deine Prüfung bestehst!
     \tableofcontents %Inhaltsverzeichnis
 
     %---Beginn Der Zusammenfassung---%
@@ -127,7 +131,7 @@
     \vspace{\fill}
     %medal
     \begin{tikzpicture}[ultra thick,black!\IfDarkModeTF{8}{6}0!orange!\IfDarkModeTF{5}{4}0!yellow, overlay]
-        \coordinate (c) at ([xshift=6cm,yshift=-8.5cm]current page.north west);
+        \coordinate (c) at ([xshift=6cm,yshift=-9cm]current page.north west);
         \draw[teal,line width=.8cm,-{Triangle Cap[reversed]}] (c) -- ($(c)+(250:3cm)$);
         \draw[teal,line width=.8cm,-{Triangle Cap[reversed]}] (c) -- ($(c)+(290:3cm)$);
         \filldraw[draw=\thepagecolor] (c) circle (1.5cm);
@@ -150,7 +154,7 @@
     \end{tipp}
     \subsubsection{aus Wahrheitstabelle}
     \paragraph{Vorgehen} Zuerst musst du die Klausel-Spalte erstellen.
-    Dazu einfach bei den wahren Zeilen die Variablen verunden, und bei den falschen Zeilen den Wahrheitswert der Variablen \fatsf{negieren} und dann die Variablen verodern. Für DNF dann einfach die Terme der wahren Spalten verodern, für KNF die Terme der falschen Spalten verunden.
+    Bei den wahren Zeilen verundest du jeweils die Variablen, und bei den falschen Zeilen \fatsf{negierst} den Wahrheitswert der Variablen und veroderst sie anschließend. Für die \textcolor{dnfcolor}{DNF} musst du dann einfach die Klauseln der wahren Spalten \textcolor{dnfcolor}{verodern}, und für die \textcolor{knfcolor}{KNF} musst du die Klauseln der falschen Spalten \textcolor{knfcolor}{verunden}.
 
     \begin{table}[ht!]
         \rowcolors{2}{\thepagecolor}{fgcolor!10!\thepagecolor}
@@ -164,24 +168,24 @@
             0 & 1 & 1 & \cellcolor{red!20!\thepagecolor} 0             & \cellcolor{red!20!\thepagecolor}$p\lor \lnot q\lor \lnot r$         \tikzmark{truethtabk4}   \\
             1 & 0 & 0 & \cellcolor{green!20!\thepagecolor} 1           & \cellcolor{green!20!\thepagecolor}$p\land \lnot q\land \lnot r$     \tikzmark{truethtabk5}   \\
             1 & 0 & 1 & \cellcolor{red!20!\thepagecolor} 0             & \cellcolor{red!20!\thepagecolor}$\lnot p\lor q\lor \lnot r$       \tikzmark{truethtabk6}     \\
-            1 & 1 & 0 & \cellcolor{green!20!\thepagecolor} 1           & \cellcolor{green!20!\thepagecolor}$p\land \lnot q\land r$         \tikzmark{truethtabk7}     \\
+            1 & 1 & 0 & \cellcolor{green!20!\thepagecolor} 1           & \cellcolor{green!20!\thepagecolor}$p\land q\land\lnot r$         \tikzmark{truethtabk7}      \\
             1 & 1 & 1 & \cellcolor{red!20!\thepagecolor} 0             & \cellcolor{red!20!\thepagecolor}$\lnot p\lor \lnot q\lor \lnot r$     \tikzmark{truethtabk8}
         \end{tabular}
         \caption{Wahrheitstabelle für $\varphi=(q\lor r)\rightarrow(p\land\lnot (p\land r))$}
         \label{tab:truethtab}
     \end{table}
 
-    \textcolor{green!80!black}{\textbf{DNF:}} $(\lnot p\land \lnot q\land \lnot r)\lor(p\land \lnot q\land \lnot r)\lor(p\land \lnot q\land r)$\tikzmark{dnf}\\
-    \textcolor{red}{\textbf{KNF:}} $(p\lor q\lor\lnot r)\land(p\lor \lnot q\lor r)\land(p\lor \lnot q\lor \lnot r)\land(\lnot p\lor q\lor \lnot r)\land(\lnot p\lor \lnot q\lor \lnot r)$\tikzmark{knf}
+    \textcolor{dnfcolor}{\textbf{DNF:}} $(\lnot p\land \lnot q\land \lnot r)\lor(p\land \lnot q\land \lnot r)\lor(p\land q\land\lnot r)$\tikzmark{dnf}\\
+    \textcolor{knfcolor}{\textbf{KNF:}} $(p\lor q\lor\lnot r)\land(p\lor \lnot q\lor r)\land(p\lor \lnot q\lor \lnot r)\land(\lnot p\lor q\lor \lnot r)\land(\lnot p\lor \lnot q\lor \lnot r)$\tikzmark{knf}
     \begin{tikzpicture}[remember picture, overlay, thick,-Latex]
-        \begin{scope}[green!80!black]
+        \begin{scope}[dnfcolor]
             \node[circle,draw] (dnfcenter) at ($(pic cs:truethtabk1)+(2cm,-.5cm)$) {$\lor$};
             \foreach \i in {1,5, 7}{
                 \draw (pic cs:truethtabk\i) -- (dnfcenter);
             }
             \draw (dnfcenter) |- ([yshift=.5ex]pic cs:dnf);
         \end{scope}
-        \begin{scope}[red]
+        \begin{scope}[knfcolor]
             \node[circle,draw] (knfcenter) at ($(pic cs:truethtabk4)+(3cm,0cm)$) {$\land$};
             \foreach \i in {2,3,4,6,8}{
                 \draw (pic cs:truethtabk\i) -- (knfcenter);
@@ -190,8 +194,33 @@
         \end{scope}
     \end{tikzpicture}
     \begin{anmerkung}
-        Die DNF ist \textbf{nicht} immer kürzer oder angenehmer, sondern nur in diesem Beispiel.
+        Die DNF ist \textbf{nicht} immer kürzer oder angenehmer zu lesen
     \end{anmerkung}
+    \vspace{-2cm}\vspace{\fill}
+    \subsubsection{minimale DNF finden}%
+    \vspace{-1.5em}%
+    \begin{figure}[ht!]%
+        \centering%
+        \begin{cartonaugh}[4][2][1][$qr$][$p$]
+            \minterms{0,4,6}
+            \autoterms[0]
+            \implicant{0}{4}
+            \manualimplicantedge{4}{4}{w}
+            \manualimplicantedge{6}{6}{e}
+            % \changecolor{yellow}
+            % \implicant{1}{7}
+            % \changecolor{cyan}
+            % \implicant{1}{2}
+        \end{cartonaugh}
+        \caption{
+            Karnaugh-Diagramm für $\varphi=(q\lor r)\rightarrow(p\land\lnot (p\land r))$ (bei 4 Variablen, mach oben AB, Links CD)\\
+            Minimale DNF: $\textcolor{red}{\left(\lnot q\land \lnot r\right)}\lor\textcolor{green}{\left(p\land \lnot r\right)}$\\
+            \fatsf{Achtung:} Wenn du Karnaugh-Diagramme nicht mehr aus DT kennst, lieber durch Nachdenken/Regeln kürzen.
+        }
+    \end{figure}
+    % \begin{tikzpicture}[karnaugh,American style, enable indices,thick]
+    %     \karnaughmap{3}{}{{$a$}{$b$}{$c$}}{0110 0110}{}
+    % \end{tikzpicture}
     \clearpage
     \subsection{Resolutionsverfahren}
     \exstats{1.5}{3min}
@@ -219,10 +248,10 @@
     \begin{center}
         \begin{forest}
             for tree={
-            grow'=north,
-            calign=first,
-            content format={\ensuremath{\left\{\forestoption{content}\right\}}},
-            edge={thick,Latex-},
+                grow'=north,
+                calign=first,
+                content format={\ensuremath{\left\{\forestoption{content}\right\}}},
+                edge={thick,Latex-},
             }
             [\Box, content format={\ensuremath{\forestoption{content}}}[r[q[p][{\lnot p, q}]][{\lnot q, r}]][{\lnot r}]]
         \end{forest}
@@ -528,8 +557,8 @@
                     \{\lnot Rxy\},
                     \{\lnot Rxy, \lnot Rxx, \lnot Ryy\},
                     \{\lnot Rxy, Rxx, Ryy\},
-                    }^{\varphi_2}
-                    \overbrace{
+                }^{\varphi_2}
+                \overbrace{
                     % \{\lnot Rxfx\},
                     \{\lnot Rfxfx, \lnot Rfxx\},
                     \{Rfxfx, Rfxx\}
@@ -543,23 +572,23 @@
             \centering
             \begin{forest}
                 for tree={
-                grow'=north,
-                calign=first,
-                edge={Latex-,thick},
-                content format={\ensuremath{\left\{\forestoption{content}\right\}}},
+                    grow'=north,
+                    calign=first,
+                    edge={Latex-,thick},
+                    content format={\ensuremath{\left\{\forestoption{content}\right\}}},
                 }
                 [\Box, content format={\ensuremath{\forestoption{content}}}
-                [\underline{Rfcfc}
-                    [\underline{\lnot Rfcc}
-                        [{\underline{\lnot Rcfc}, \lnot Rfcc}
-                            [\underline{\lnot Rcc}]
-                            [{\lnot Rcfc, \lnot Rfcc, \underline{Rcc}}]
+                    [\underline{Rfcfc}
+                        [\underline{\lnot Rfcc}
+                            [{\underline{\lnot Rcfc}, \lnot Rfcc}
+                                [\underline{\lnot Rcc}]
+                                [{\lnot Rcfc, \lnot Rfcc, \underline{Rcc}}]
+                            ]
+                            [\underline{Rcfc}]
                         ]
-                        [\underline{Rcfc}]
+                        [{Rfcfc, \underline{Rfcc}}]
                     ]
-                    [{Rfcfc, \underline{Rfcc}}]
-                ]
-                [\underline{\lnot Rfcfc}]
+                    [\underline{\lnot Rfcfc}]
                 ]
             \end{forest}
         \end{figure}

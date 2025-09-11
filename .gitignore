@@ -1,7 +1,12 @@
+# Project specific files
+build/
+debug/
+
 ### VS-Code ###
 .vscode/*
-!.vscode/settings.default.json
 !.vscode/extensions.json
+!.vscode/settings.default.json
+!.vscode/*.code-snippets
 .VSCodeCounter/
 
 ### Intellij ###
@@ -99,7 +104,7 @@ comp/
 *.xdv
 *-converted-to.*
 # these rules might exclude image files for figures etc.
-*.ps
+# *.ps
 # *.eps
 *.pdf
 
@@ -108,7 +113,9 @@ comp/
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
+*.bbl-SAVE-ERROR
 *.bcf
+*.bcf-SAVE-ERROR
 *.blg
 *-blx.aux
 *-blx.bib
@@ -362,6 +369,7 @@ TSWLatexianTemp*
 
 #PDF/A
 *.xmpdata
+*.pdfa-*-complience*
 
 *.slnc
 *.len
@@ -369,6 +377,10 @@ TSWLatexianTemp*
 
 # Latexindent
 *.bak[0-9]*
+__latexindent_temp*.tex
+
+# list of codeblocks
+*.loc
 
 # REVTeX puts footnotes in the bibliography by default, unless the nofootinbib
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.

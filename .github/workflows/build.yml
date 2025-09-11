@@ -19,37 +19,33 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    # automatically cancel the workflow if it runs longer than 10 minutes
+    timeout-minutes: 10
     # The docker image to use for the container
     container:
-      image: ghcr.io/rdeisenroth/rubos-tuda-template:latest
+      image: ghcr.io/rdeisenroth/rubos-tuda-template:latest # this one has the TUDA-Logo already installed, but you can use any other image and install the logo yourself
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # 1. Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Set up Git repository
-        uses: actions/checkout@v3
-
-      # Link texmf folder to the current texmf home
-      - name: Link texmf folder to the current texmf home
-        run: |
-          ln -s /root/texmf $(kpsewhich -var-value=TEXMFHOME)
-          texhash --verbose
+        uses: actions/checkout@v5
 
       # 2. Build the document
       - name: "Build the document"
         run: |
-          CI_RUN=1 make -j $(nproc)
+          make -j
           mv build/*.pdf .
 
       # 3. Upload artifacts to GitHub
       - name: Upload artifacts to GitHub
-        if: ${{ !env.ACT }}
-        uses: actions/upload-artifact@v3
+        #if: ${{ !env.ACT }}
+        uses: actions/upload-artifact@v4
         with:
           name: Aufgabenguide
           path: "*.pdf"
-          if-no-files-found: error
-      
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+  # The following step deploys the PDF to Nextcloud via WebDAV. The new NextHessenbox should work perfectly fine with this. The idea is to generate one link, where others can always find the latest version of your document (e.g. your reviewers for your thesis)
       # 4. Get Date
       - name: Get current date
         id: date
@@ -58,9 +54,7 @@ jobs:
       #5 create a release
       - name: Create a release
         if: ${{ github.ref == 'refs/heads/master' && !env.ACT && github.repository == 'Rdeisenroth/APL-Aufgabenguide' }}
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: snapshot-${{ steps.date.outputs.date }}
           name: snapshot-release-${{ steps.date.outputs.date }}
