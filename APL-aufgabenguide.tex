@@ -12,12 +12,13 @@
 ]{rubos-tuda-template}
 
 \usepackage{datetime}
+\usepackage{amsmath}
 
 %% Summary settings--%%
 \title[AuPL]{Aussagen und Prädikatenlogik}
 \subtitle{Aufgabenguide}
 \semester{SoSe 2022}
-\fachbereich{Informatik}
+\department{Informatik}
 \author{Ruben Deisenroth}
 \date{\today,~\currenttime~Uhr}
 % \version{1.0-Snapshot}
@@ -144,7 +145,7 @@
         Verundung von Veroderungen: $\{\{x\lor y\lor\dots\}\land\{a\lor b\lor\dots\}\land\dots\}$
     \end{definition}
     \begin{tipp}
-        Nach De-Morgan: Strich über die Einzelnen Buchstaben, sowie $\land$ und $\lor$ vertauschen, ist äquivalent zum Ursprung:\\ 
+        Nach De-Morgan: Strich über die Einzelnen Buchstaben, sowie $\land$ und $\lor$ vertauschen, ist äquivalent zum Ursprung:\\
         $\neg(a\land b) = \overline{a}\lor \overline{b}$
     \end{tipp}
     \subsubsection{aus Wahrheitstabelle}
@@ -198,7 +199,7 @@
         Buchstabe mit oder ohne Negation, z.B.: $a$ oder $\lnot a$ (aber nicht sowas: $a\rightarrow{}b$)
     \end{definition}
     \begin{definition}[Klausel]
-        Menge mit einzelnen Literalen, auch genannt KNF Glied. Das Komma steht hier für $\lor$ z.B.: 
+        Menge mit einzelnen Literalen, auch genannt KNF Glied. Das Komma steht hier für $\lor$ z.B.:
         $\{\lnot a, b,\lnot c, d\}$ bedeutet dann $\lnot a\lor b\lor\lnot c\lor d$ (aber $\{a\rightarrow{}b,\lnot d\}$ ist keine Klausel)
     \end{definition}
     \begin{definition}[Klauselmenge]
@@ -235,7 +236,7 @@
         Buchstabe mit oder ohne Negation, z.B.: $a$ oder $\lnot a$ (aber nicht sowas: $a\rightarrow{}b$)
     \end{definition}
     \begin{definition}[Klausel]
-        Menge mit einzelnen Literalen, auch genannt KNF Glied. Das Komma steht hier für $\lor$ z.B.: 
+        Menge mit einzelnen Literalen, auch genannt KNF Glied. Das Komma steht hier für $\lor$ z.B.:
         $\{\lnot a, b,\lnot c, d\}$ bedeutet dann $\lnot a\lor b\lor\lnot c\lor d$ (aber $\{a\rightarrow{}b,\lnot d\}$ ist keine Klausel)
     \end{definition}
     \begin{definition}[Hornklausel]
@@ -517,14 +518,25 @@
         \end{align*}
 
         \item Als nächstes Extrahieren wir die Klauseln:
-        {\setlength{\mathindent}{0cm}\begin{align*}
-            \{\{\lnot Rxy, \lnot Ryz, Rxz\},
-            \{\lnot Rxy, \lnot Rxx, \lnot Ryy\},
-            \{\lnot Rxy, Rxx, Ryy\},
-            \{Rxfx\},
-            \{\lnot Rfxfx, \lnot Rfxx\},
-            \{Rfxfx, Rfxx\}\}
-        \end{align*}}
+        \begin{ceqn}
+            \begin{align*}
+                \{
+                \overbrace{
+                    \{\lnot Rxy, \lnot Ryz, Rxz\},
+                }^{\varphi_1}
+                \overbrace{
+                    \{\lnot Rxy\},
+                    \{\lnot Rxy, \lnot Rxx, \lnot Ryy\},
+                    \{\lnot Rxy, Rxx, Ryy\},
+                    }^{\varphi_2}
+                    \overbrace{
+                    % \{\lnot Rxfx\},
+                    \{\lnot Rfxfx, \lnot Rfxx\},
+                    \{Rfxfx, Rfxx\}
+                }^{\varphi_3'}
+                \}
+            \end{align*}
+        \end{ceqn}
         \item Nun können wir einen Resolutionsbeweis führen:
 
         \begin{figure}[ht!]
