@@ -369,7 +369,7 @@
                 \hline
                 (Ax)          & \infer{\Gamma, \varphi \vdash \Delta, \varphi}{\phantom{I}}                                                     &               &                                                                                                                  \\
                 (0-Ax)        & \infer{\Gamma, 0 \vdash \Delta}{}                                                                               & (1-Ax)        & \infer{\Gamma \vdash \Delta, 1}{\phantom{I}}                                                                     \\
-                $ (\lnot L) $ & \infer{\Gamma, \lnot \vdash \Delta}{\Gamma \vdash \Delta, \varphi}                                              & $ (\lnot R $) & \infer{\Gamma \vdash \Delta, \lnot \varphi}{\Gamma, \varphi \vdash \Delta}                                       \\
+                $ (\lnot L) $ & \infer{\Gamma, \lnot \varphi \vdash \Delta}{\Gamma \vdash \Delta, \varphi}                                              & $ (\lnot R $) & \infer{\Gamma \vdash \Delta, \lnot \varphi}{\Gamma, \varphi \vdash \Delta}                                       \\
                 $ (\lor L) $  & \infer{\Gamma, \varphi \lor \psi \vdash \Delta}{\Gamma, \varphi \vdash \Delta \quad \Gamma, \psi \vdash \Delta} & $ (\lor R) $  & \infer{\Gamma \vdash \Delta, \varphi \lor \psi}{\Gamma \vdash \Delta, \varphi, \psi}                             \\
                 $ (\land L) $ & \infer{\Gamma, \varphi \land \psi \vdash \Delta}{\Gamma, \varphi, \psi \vdash \Delta}                           & $ (\land R) $ & \infer{\Gamma \vdash \Delta, \varphi \land \psi}{\Gamma \vdash \Delta, \varphi \quad \Gamma \vdash \Delta, \psi} \\
                 \hline
